@@ -2,12 +2,10 @@ let highestZ = 1;
 
 class Paper {
   holdingPaper = false;
-  mouseTouchX = 0;
-  mouseTouchY = 0;
-  mouseX = 0;
-  mouseY = 0;
-  prevMouseX = 0;
-  prevMouseY = 0;
+  touchX = 0;
+  touchY = 0;
+  prevTouchX = 0;
+  prevTouchY = 0;
   velX = 0;
   velY = 0;
   rotation = Math.random() * 30 - 15;
@@ -16,17 +14,27 @@ class Paper {
   rotating = false;
 
   init(paper) {
-    document.addEventListener('mousemove', (e) => {
+    const isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
+    const startEvent = isTouchDevice ? 'touchstart' : 'mousedown';
+    const moveEvent = isTouchDevice ? 'touchmove' : 'mousemove';
+    const endEvent = isTouchDevice ? 'touchend' : 'mouseup';
+
+    document.addEventListener(moveEvent, (e) => {
+      e.preventDefault(); // Prevent default touch behavior
+
+      const touch = isTouchDevice ? e.touches[0] : e;
+      
       if(!this.rotating) {
-        this.mouseX = e.clientX;
-        this.mouseY = e.clientY;
+        this.touchX = touch.clientX;
+        this.touchY = touch.clientY;
         
-        this.velX = this.mouseX - this.prevMouseX;
-        this.velY = this.mouseY - this.prevMouseY;
+        this.velX = this.touchX - this.prevTouchX;
+        this.velY = this.touchY - this.prevTouchY;
       }
         
-      const dirX = e.clientX - this.mouseTouchX;
-      const dirY = e.clientY - this.mouseTouchY;
+      const dirX = touch.clientX - this.touchX;
+      const dirY = touch.clientY - this.touchY;
       const dirLength = Math.sqrt(dirX*dirX+dirY*dirY);
       const dirNormalizedX = dirX / dirLength;
       const dirNormalizedY = dirY / dirLength;
@@ -43,31 +51,34 @@ class Paper {
           this.currentPaperX += this.velX;
           this.currentPaperY += this.velY;
         }
-        this.prevMouseX = this.mouseX;
-        this.prevMouseY = this.mouseY;
+        this.prevTouchX = this.touchX;
+        this.prevTouchY = this.touchY;
 
         paper.style.transform = `translateX(${this.currentPaperX}px) translateY(${this.currentPaperY}px) rotateZ(${this.rotation}deg)`;
       }
     })
 
-    paper.addEventListener('mousedown', (e) => {
+    paper.addEventListener(startEvent, (e) => {
+      e.preventDefault(); // Prevent default touch behavior
       if(this.holdingPaper) return; 
       this.holdingPaper = true;
       
       paper.style.zIndex = highestZ;
       highestZ += 1;
       
-      if(e.button === 0) {
-        this.mouseTouchX = this.mouseX;
-        this.mouseTouchY = this.mouseY;
-        this.prevMouseX = this.mouseX;
-        this.prevMouseY = this.mouseY;
-      }
-      if(e.button === 2) {
+      const touch = isTouchDevice ? e.touches[0] : e;
+
+      this.touchX = touch.clientX;
+      this.touchY = touch.clientY;
+      this.prevTouchX = this.touchX;
+      this.prevTouchY = this.touchY;
+
+      if(isTouchDevice && e.touches.length > 1) {
         this.rotating = true;
       }
     });
-    window.addEventListener('mouseup', () => {
+    
+    window.addEventListener(endEvent, () => {
       this.holdingPaper = false;
       this.rotating = false;
     });
