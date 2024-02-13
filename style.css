@@ -43,8 +43,8 @@ body {
 }
 
 .paper.image .specific-image {
-  max-height: 100%; /* Increase the max-height as desired */
-  width: 100%; /* Ensure the width adjusts proportionally */
+  max-height: 50%; /* Increase the max-height as desired */
+  width: 50%; /* Ensure the width adjusts proportionally */
 }
 
 
