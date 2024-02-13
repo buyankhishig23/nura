@@ -43,13 +43,13 @@ body {
 }
 
 .paper.image .specific-image {
-  max-height: 50%; /* Increase the max-height as desired */
-  width: 50%; /* Ensure the width adjusts proportionally */
+  max-height: 30%; /* Increase the max-height as desired */
+  width: auto; /* Ensure the width adjusts proportionally */
 }
 
 
 img {
-  max-height: 200px;
+  max-height: 300px;
   width: 100%;
   user-select: none;
 }
