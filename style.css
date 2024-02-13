@@ -5,36 +5,36 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: cover; /* Use cover instead of specific size */
+  background-size: cover;
   background-image: url("https://www.psdgraphics.com/wp-content/uploads/2022/01/white-math-paper-texture.jpg");
   background-position: center center;
 }
 
 .paper {
   background-image: url("https://i0.wp.com/textures.world/wp-content/uploads/2018/10/2-Millimeter-Paper-Background-copy.jpg?ssl=1");
-  background-size: contain; /* Use contain instead of specific size */
+  background-size: contain;
   background-position: center center;
-  padding: 10px; /* Adjust padding */
-  max-width: 80%; /* Set maximum width */
+  padding: 10px;
+  max-width: 80%;
   transform: rotateZ(-5deg);
   box-shadow: 1px 15px 20px 0px rgba(0, 0, 0, 0.5);
-  position: relative; /* Changed to relative for proper positioning */
+  position: relative;
 }
 
 .paper.heart {
   width: 100%;
-  padding-bottom: 100%; /* Maintain aspect ratio for heart */
+  padding-bottom: 100%;
   border-radius: 50%;
-  overflow: hidden; /* Hide overflow */
+  overflow: hidden;
 }
 
 .paper.image p {
-  font-size: 20px; /* Adjust font size */
+  font-size: 20px;
 }
 
 img {
   width: 100%;
-  height: 100%; /* Maintain aspect ratio */
+  height: intrinsic; /* Set height to intrinsic to maintain the original size */
 }
 
 .paper.heart::after {
@@ -45,7 +45,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  background-size: 70%; /* Adjust background size */
+  background-size: 70%;
   background-position: center center;
   background-repeat: no-repeat;
   opacity: 0.6;
@@ -53,10 +53,10 @@ img {
 
 p {
   font-family: 'Zeyada';
-  font-size: 30px; /* Adjust font size */
+  font-size: 30px;
   color: rgb(0, 0, 100);
   opacity: 0.75;
   user-select: none;
-  text-align: center; /* Center text */
-  margin: 20px 0; /* Add margin */
+  text-align: center;
+  margin: 20px 0;
 }
