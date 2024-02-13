@@ -1,40 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
 
+
+
+
 body {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: cover; /* Use cover instead of specific size */
+
+  background-size: 1000px;
   background-image: url("https://www.psdgraphics.com/wp-content/uploads/2022/01/white-math-paper-texture.jpg");
   background-position: center center;
 }
 
 .paper {
   background-image: url("https://i0.wp.com/textures.world/wp-content/uploads/2018/10/2-Millimeter-Paper-Background-copy.jpg?ssl=1");
-  background-size: contain; /* Use contain instead of specific size */
+  background-size: 500px;
   background-position: center center;
-  padding: 10px; /* Adjust padding */
-  max-width: 80%; /* Set maximum width */
+  padding: 20px 100px;
+/*  min-width: 800px; */
+  
   transform: rotateZ(-5deg);
-  box-shadow: 1px 15px 20px 0px rgba(0, 0, 0, 0.5);
-  position: relative; /* Changed to relative for proper positioning */
+  box-shadow: 1px 15px 20px 0px rgba(0,0,0,0.5);
+  
+  position: absolute;
 }
 
 .paper.heart {
-  width: 100%;
-  padding-bottom: 100%; /* Maintain aspect ratio for heart */
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 0;
   border-radius: 50%;
-  overflow: hidden; /* Hide overflow */
 }
 
-.paper.image p {
-  font-size: 20px; /* Adjust font size */
+.paper.image {
+  padding: 10px;
 }
+.paper.image p {
+  font-size: 30px;
+}
+
+.paper.image .specific-image {
+  max-height: 100%; /* Increase the max-height as desired */
+  width: 100%; /* Ensure the width adjusts proportionally */
+}
+
 
 img {
+  max-height: 200px;
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
+  user-select: none;
 }
 
 .paper.heart::after {
@@ -45,7 +62,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  background-size: 70%; /* Adjust background size */
+  background-size: 150px;
   background-position: center center;
   background-repeat: no-repeat;
   opacity: 0.6;
@@ -53,10 +70,10 @@ img {
 
 p {
   font-family: 'Zeyada';
-  font-size: 30px; /* Adjust font size */
-  color: rgb(0, 0, 100);
+  font-size: 50px;
+  color: rgb(0,0,100);
   opacity: 0.75;
   user-select: none;
-  text-align: center; /* Center text */
-  margin: 20px 0; /* Add margin */
+  
+  // filter: drop-shadow(2px 1.5px 1px rgba(0,0,105,0.9));
 }
